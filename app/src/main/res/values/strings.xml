@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Score Card Android</string>
+    <string name="app_name">Scoreboard</string>
+    <string name="main_menu_action_setting">Settings</string>
 </resources>
