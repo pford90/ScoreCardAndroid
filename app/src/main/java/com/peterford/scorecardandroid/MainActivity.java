@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.peterford.scorecardandroid.adapter.ScoreAdapter;
 import com.peterford.scorecardandroid.model.Score;
@@ -47,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.main_action_clear_strokes:
+                Toast.makeText(this, "CLEAR STORKES", Toast.LENGTH_LONG).show();
+        }
         return true;
     }
 }

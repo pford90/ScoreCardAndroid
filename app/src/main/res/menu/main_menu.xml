@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/main_action_clear_strokes"
         android:orderInCategory="100"
-        android:title="@string/main_menu_action_setting"
+        android:title="@string/main_menu_clear_strokes"
         app:showAsAction="never" />
 </menu>
