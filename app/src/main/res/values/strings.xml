@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Scoreboard</string>
     <string name="main_menu_action_setting">Settings</string>
+    <string name="score_hole_label">Hole %1$d</string>
 </resources>
