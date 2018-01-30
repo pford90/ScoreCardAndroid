@@ -98,5 +98,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        mEditor.clear();
+        mEditor.apply();
     }
 }
