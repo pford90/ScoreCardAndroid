@@ -1,25 +1,16 @@
 package com.peterford.scorecardandroid;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Adapter;
-import android.widget.Toast;
 
 import com.peterford.scorecardandroid.adapter.HoleAdapter;
-import com.peterford.scorecardandroid.adapter.ScoreAdapter;
 import com.peterford.scorecardandroid.model.Hole;
-import com.peterford.scorecardandroid.model.Score;
-import com.peterford.scorecardandroid.model.ScoreBoard;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
