@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,11 +9,16 @@
         android:id="@+id/holeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:textSize="24sp" />
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="Hole 18" />
 
     <TextView
         android:id="@+id/scoreValue"
@@ -22,13 +27,16 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="false"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/holeLabel"
         android:layout_toStartOf="@+id/addButton"
         android:text="0"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/minusButton"
@@ -37,7 +45,8 @@
         android:layout_alignParentEnd="true"
         android:minHeight="48dp"
         android:minWidth="48dp"
-        android:text="-" />
+        android:text="-"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/addButton"
@@ -48,5 +57,6 @@
         android:minHeight="48dp"
         android:minWidth="48dp"
         android:text="+"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textStyle="bold" />
 </RelativeLayout>

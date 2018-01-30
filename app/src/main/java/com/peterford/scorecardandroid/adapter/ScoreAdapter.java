@@ -1,13 +1,12 @@
 package com.peterford.scorecardandroid.adapter;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.peterford.scorecardandroid.R;
@@ -17,31 +16,33 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by Peter on 1/17/2018.
- */
-
-public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> {
+public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder> {
 
     private Score[] mScores;
     private Context mContext;
+
     public ScoreAdapter(Context context, Score[] scores) {
         this.mContext = context;
         this.mScores = scores;
     }
 
+    public void swap(Score[] scores){
+        mScores = scores;
+        notifyDataSetChanged();
+    }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ScoreViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_list_item_score, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        view.setBackground(mContext.getDrawable(R.drawable.main_scoreboard_list_view_border));
+        ScoreViewHolder holder = new ScoreViewHolder(view);
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bindData(mScores[position]);
+    public void onBindViewHolder(ScoreViewHolder holder, int position) {
+        holder.bindData(mContext, mScores[position]);
     }
 
     @Override
@@ -49,45 +50,49 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> 
         return mScores.length;
     }
 
-    protected class ViewHolder extends RecyclerView.ViewHolder{
+
+    protected class ScoreViewHolder extends RecyclerView.ViewHolder {
+
+        private String TAG = ScoreViewHolder.class.getSimpleName();
 
         @BindView(R.id.scoreValue) TextView mScoreValue;
         @BindView(R.id.holeLabel) TextView mHoleLabel;
         @BindView(R.id.minusButton) Button mMinusButton;
         @BindView(R.id.addButton) Button mAddButton;
 
-
-        public ViewHolder(View itemView) {
+        public ScoreViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindData(Score score) {
-            mScoreValue.setText(String.valueOf(score.getScore()));
-            mHoleLabel.setText(
-                    String.format(mContext.getResources().getString(R.string.score_hole_label), score.getHole() )
-            );
+        public void bindData(Context context, Score score) {
+            itemView.setTag(score);
+            String holeLabelStr = String.format(context.getResources().getString(R.string.score_hole_label), score.getHole() );
+            mScoreValue.setText(score.getScore() + "");
+            mHoleLabel.setText( holeLabelStr );
         }
 
         @OnClick(R.id.addButton)
-        public void addToScore(View view) {
-            int scoreValue = new Integer(mScoreValue.getText().toString());
+        public void addOnClick(View view) {
+            Score score = (Score)itemView.getTag();
+//            Score score = (Score) view.getTag();
+            int scoreValue = score.getScore();
             scoreValue++;
+            score.setScore(scoreValue);
             mScoreValue.setText(scoreValue + "");
 
+            notifyDataSetChanged();
         }
 
         @OnClick(R.id.minusButton)
-        public void minusToScore(View view) {
-            int scoreValue = new Integer(mScoreValue.getText().toString());
+        public void minusOnClick(View view) {
+            Score score = (Score)itemView.getTag();
+//            Score score = (Score) view.getTag();
+            int scoreValue = score.getScore();
             scoreValue--;
-
-            if( scoreValue < 0)
-                scoreValue = 0;
-
+            score.setScore(scoreValue);
             mScoreValue.setText(scoreValue + "");
+            notifyDataSetChanged();
         }
-
     }
-
 }

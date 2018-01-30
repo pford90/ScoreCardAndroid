@@ -28,6 +28,9 @@ public class Score {
     }
 
     public void setScore(int score) {
-        this.mScore = score;
+        if( score < 0)
+            this.mScore = 0;
+        else
+            this.mScore = score;
     }
 }
